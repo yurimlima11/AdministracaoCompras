@@ -25,7 +25,7 @@ public class CategoriaController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getById(@PathVariable Integer id) throws ObjectNotFoundException {
-		Categoria categoria = categoriaService.findById(id);
+		Categoria categoria = categoriaService.getById(id);
 		return ResponseEntity.ok().body(categoria);
 	}
 	
@@ -35,6 +35,14 @@ public class CategoriaController {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 					.path("/{id}").buildAndExpand(categoria.getId()).toUri();
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Categoria categoria, @PathVariable Integer id) throws ObjectNotFoundException{
+		categoria.setId(id);
+		categoria = categoriaService.update(categoria);
+		return ResponseEntity.noContent().build();
+		
 	}
 	
 }

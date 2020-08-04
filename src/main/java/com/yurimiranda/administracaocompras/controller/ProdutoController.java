@@ -20,7 +20,7 @@ public class ProdutoController {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> findById(@PathVariable Integer id){
-		Produto produto = produtoService.findById(id);
+		Produto produto = produtoService.getById(id);
 		return ResponseEntity.ok().body(produto); 
 	}
 }
