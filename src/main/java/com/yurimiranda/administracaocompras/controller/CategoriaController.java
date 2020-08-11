@@ -14,8 +14,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.yurimiranda.administracaocompras.entities.Categoria;
 import com.yurimiranda.administracaocompras.services.CategoriaService;
 
-import javassist.tools.rmi.ObjectNotFoundException;
-
 @RestController
 @RequestMapping(value = "/api/categorias")
 public class CategoriaController {
@@ -24,7 +22,7 @@ public class CategoriaController {
 	private CategoriaService categoriaService;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getById(@PathVariable Integer id) throws ObjectNotFoundException {
+	public ResponseEntity<Categoria> getById(@PathVariable Integer id){
 		Categoria categoria = categoriaService.getById(id);
 		return ResponseEntity.ok().body(categoria);
 	}
@@ -38,11 +36,16 @@ public class CategoriaController {
 	}
 	
 	@RequestMapping(value = "/{id}",method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Categoria categoria, @PathVariable Integer id) throws ObjectNotFoundException{
+	public ResponseEntity<Void> update(@RequestBody Categoria categoria, @PathVariable Integer id){
 		categoria.setId(id);
 		categoria = categoriaService.update(categoria);
 		return ResponseEntity.noContent().build();
 		
 	}
 	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable Integer id){
+		categoriaService.delete(id);
+		return ResponseEntity.noContent().build();
+	}
 }

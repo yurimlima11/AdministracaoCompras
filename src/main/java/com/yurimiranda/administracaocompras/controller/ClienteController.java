@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yurimiranda.administracaocompras.entities.Cliente;
 import com.yurimiranda.administracaocompras.services.ClienteService;
 
-import javassist.tools.rmi.ObjectNotFoundException;
-
 @RestController
 @RequestMapping(value = "/api/clientes")
 public class ClienteController {
@@ -20,7 +18,7 @@ public class ClienteController {
 	private ClienteService clienteService;
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getById(@PathVariable Integer id) throws ObjectNotFoundException{
+	public ResponseEntity<?> getById(@PathVariable Integer id){
 		Cliente cliente = clienteService.getById(id);
 		return ResponseEntity.ok().body(cliente);
 	}

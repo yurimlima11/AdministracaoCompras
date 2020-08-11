@@ -1,6 +1,7 @@
 package com.yurimiranda.administracaocompras.services;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,8 @@ import com.yurimiranda.administracaocompras.entities.Cidade;
 import com.yurimiranda.administracaocompras.entities.Estado;
 import com.yurimiranda.administracaocompras.repositories.CidadeRepository;
 import com.yurimiranda.administracaocompras.repositories.EstadoRepository;
+import com.yurimiranda.administracaocompras.services.exception.ObjectNotFoundException;
 
-import javassist.tools.rmi.ObjectNotFoundException;
 
 @Service
 public class CidadeService {
@@ -27,7 +28,7 @@ public class CidadeService {
 		return cidades;
 	}
 	
-	public Cidade getById(Integer id) throws ObjectNotFoundException{
+	public Cidade getById(Integer id){
 		Optional<Cidade> cidade = cidadeRepository.findById(id);
 		return cidade.orElseThrow(() -> new ObjectNotFoundException(
 				"Cidade não encontrada!"));

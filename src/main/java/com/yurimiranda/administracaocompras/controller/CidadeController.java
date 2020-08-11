@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yurimiranda.administracaocompras.entities.Cidade;
 import com.yurimiranda.administracaocompras.services.CidadeService;
 
-import javassist.tools.rmi.ObjectNotFoundException;
-
 @RestController
 @RequestMapping(value = "/api/cidades")
 public class CidadeController {
@@ -29,7 +27,7 @@ public class CidadeController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getById(@PathVariable Integer id) throws ObjectNotFoundException{
+	public ResponseEntity<?> getById(@PathVariable Integer id){
 		Cidade cidade = cidadeService.getById(id);
 		return ResponseEntity.ok().body(cidade);
 	}

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.yurimiranda.administracaocompras.entities.Cliente;
 import com.yurimiranda.administracaocompras.repositories.ClienteRepository;
+import com.yurimiranda.administracaocompras.services.exception.ObjectNotFoundException;
 
-import javassist.tools.rmi.ObjectNotFoundException;
 
 @Service
 public class ClienteService {
@@ -16,7 +16,7 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
-	public Cliente getById(Integer id) throws ObjectNotFoundException {
+	public Cliente getById(Integer id){
 		Optional<Cliente> cliente = clienteRepository.findById(id);
 		return cliente.orElseThrow(() -> new ObjectNotFoundException(
 				"Cliente não encontrado"));
