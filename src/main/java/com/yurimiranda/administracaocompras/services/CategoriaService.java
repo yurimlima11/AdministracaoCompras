@@ -1,5 +1,6 @@
 package com.yurimiranda.administracaocompras.services;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -11,6 +12,7 @@ import com.yurimiranda.administracaocompras.entities.Categoria;
 import com.yurimiranda.administracaocompras.repositories.CategoriaRepository;
 import com.yurimiranda.administracaocompras.services.exception.DataIntegrityException;
 import com.yurimiranda.administracaocompras.services.exception.ObjectNotFoundException;
+
 
 @Service
 public class CategoriaService {
@@ -40,5 +42,10 @@ public class CategoriaService {
 		catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
 		}
+	}
+	
+	public List<Categoria> findAll(){
+		List<Categoria> categorias = categoriaRepository.findAll();
+		return categorias;
 	}
 }
