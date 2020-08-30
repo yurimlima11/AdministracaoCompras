@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.yurimiranda.administracaocompras.dto.CategoriaDTO;
 import com.yurimiranda.administracaocompras.entities.Categoria;
 import com.yurimiranda.administracaocompras.repositories.CategoriaRepository;
 import com.yurimiranda.administracaocompras.services.exception.DataIntegrityException;
@@ -57,5 +58,9 @@ public class CategoriaService {
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return categoriaRepository.findAll(pageRequest);
+	}
+	
+	public Categoria fromDTO(CategoriaDTO categoriaDTO) {
+		return new Categoria(categoriaDTO.getId(), categoriaDTO.getNome());
 	}
 }

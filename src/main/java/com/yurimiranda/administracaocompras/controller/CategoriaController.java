@@ -5,6 +5,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +36,8 @@ public class CategoriaController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> create(@RequestBody Categoria categoria){
+	public ResponseEntity<Void> create(@Valid @RequestBody CategoriaDTO categoriaDTO){
+		Categoria categoria = categoriaService.fromDTO(categoriaDTO);
 		categoria = categoriaService.create(categoria);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 					.path("/{id}").buildAndExpand(categoria.getId()).toUri();
