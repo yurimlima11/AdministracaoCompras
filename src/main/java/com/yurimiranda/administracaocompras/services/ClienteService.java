@@ -39,6 +39,7 @@ public class ClienteService {
 		newCliente.setNome(cliente.getNome());
 		newCliente.setEmail(cliente.getEmail());
 	}
+	
 	public void delete(Integer id) {
 		try {
 			clienteRepository.deleteById(id);
