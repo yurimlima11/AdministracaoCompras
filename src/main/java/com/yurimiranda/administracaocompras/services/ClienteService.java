@@ -1,6 +1,7 @@
 package com.yurimiranda.administracaocompras.services;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yurimiranda.administracaocompras.dto.ClienteDTO;
 import com.yurimiranda.administracaocompras.dto.ClienteNewDTO;
-import com.yurimiranda.administracaocompras.entities.Categoria;
 import com.yurimiranda.administracaocompras.entities.Cidade;
 import com.yurimiranda.administracaocompras.entities.Cliente;
 import com.yurimiranda.administracaocompras.entities.Endereco;
