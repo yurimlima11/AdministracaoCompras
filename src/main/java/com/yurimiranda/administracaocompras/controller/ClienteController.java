@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.yurimiranda.administracaocompras.dto.ClienteDTO;
+import com.yurimiranda.administracaocompras.dto.ClienteNewDTO;
 import com.yurimiranda.administracaocompras.entities.Cliente;
 import com.yurimiranda.administracaocompras.services.ClienteService;
 
@@ -34,14 +35,14 @@ public class ClienteController {
 		return ResponseEntity.ok().body(cliente);
 	}
 	
-	/*@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> create(@Valid @RequestBody ClienteDTO clienteDTO){
-		Cliente cliente = clienteService.fromDTO(clienteDTO);
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> create(@Valid @RequestBody ClienteNewDTO clienteNewDTO){
+		Cliente cliente = clienteService.fromDTO(clienteNewDTO);
 		cliente = clienteService.create(cliente);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 					.path("/{id}").buildAndExpand(cliente.getId()).toUri();
 		return ResponseEntity.created(uri).build();
-	}*/
+	}
 	
 	@RequestMapping(value = "/{id}",method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO clienteDTO, @PathVariable Integer id){
