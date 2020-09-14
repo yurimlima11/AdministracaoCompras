@@ -78,4 +78,4 @@ public class CategoriaController {
 		return ResponseEntity.ok().body(listaDTO);
 	}
 		
-	}
+}
